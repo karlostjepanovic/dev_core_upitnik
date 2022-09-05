@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class AuthController extends Controller
 {
     // sučelje za prijavu
-    public function index()
+    public function index(): Redirector|Response|RedirectResponse|Application
     {
         if(Auth::check()){
             $user = Auth::user();
-            if($user->is_admin){
-                return redirect('admin/schools');
+            if(count($user->myQuestionnaires()->get()->toArray())){
+                return redirect()->route('myQuestionnaires');
             }else{
-                return redirect('main/set-school');
+                return redirect()->route('setSchool');
             }
         }else{
             return Inertia::render('Login');
@@ -26,7 +30,7 @@ class AuthController extends Controller
     /**
      * Prijava korisnika
      */
-    public function login(Request $request)
+    public function login(Request $request): Redirector|Application|RedirectResponse
     {
         $request->validate([
             'username'  => 'required',
@@ -49,10 +53,10 @@ class AuthController extends Controller
     /**
      * Odjava korisnika
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
-        session()->flush();
         Auth::logout();
+        session()->flush();
         return redirect()->route('login');
     }
 }

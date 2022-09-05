@@ -32,7 +32,7 @@
                     </div>
                     <ul class="options">
                         <li><Link href="/">Početna stranica</Link></li>
-                        <li><Link href="/profile">Korisnički račun</Link></li>
+                        <li><Link href="/admin/schools" v-if="$page.props.auth.is_admin">Upravljanje sustavom</Link></li>
                         <li><Link href="/change-password">Promjena lozinke</Link></li>
                     </ul>
                 </div>
@@ -40,6 +40,43 @@
         </div>
         <div class="view">
             <div class="content-wrap">
+                <div class="navigation-wrap" v-if="($page.props.school || $page.props.schoolClass || $page.props.student) && !this.$page.url.includes('admin')">
+                    <div class="item">
+                        <Link href="/" class="link value">Početna stranica</Link>
+                    </div>
+                    <div class="item" v-if="$page.props.school">
+                        <div class="icon">
+                            <svg style="width:24px;height:24px" viewBox="0 -2 24 24">
+                                <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                            </svg>
+                        </div>
+                        <Link :href="`/school/${$page.props.school.id}/set-class`" class="link value">{{ $page.props.school.name }}</Link>
+                    </div>
+                    <div class="item" v-if="$page.props.schoolClass">
+                        <div class="icon">
+                            <svg style="width:24px;height:24px" viewBox="0 -2 24 24">
+                                <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                            </svg>
+                        </div>
+                        <Link :href="`/school/${$page.props.school.id}/school-class/${$page.props.schoolClass.id}/set-student`" class="link value">{{ $page.props.schoolClass.name }}</Link>
+                    </div>
+                    <div class="item" v-if="$page.props.student">
+                        <div class="icon">
+                            <svg style="width:24px;height:24px" viewBox="0 -2 24 24">
+                                <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                            </svg>
+                        </div>
+                        <Link :href="`/school/${$page.props.school.id}/school-class/${$page.props.schoolClass.id}/student/${$page.props.student.id}/show`" class="link value">{{ $page.props.student.user.firstname + ' ' + $page.props.student.user.lastname }}</Link>
+                    </div>
+                    <div class="item" v-if="$page.props.studentQuestionnaire">
+                        <div class="icon">
+                            <svg style="width:24px;height:24px" viewBox="0 -2 24 24">
+                                <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                            </svg>
+                        </div>
+                        <div class="value">{{ $page.props.studentQuestionnaire.questionnaire.name }}</div>
+                    </div>
+                </div>
                 <Messages />
                 <slot />
             </div>
@@ -202,6 +239,21 @@ export default {
 .dropdown .options li:hover {
     background: #e5e5e5;
     text-decoration-line: underline;
+}
+
+.navigation-wrap {
+    display: flex;
+}
+
+.navigation-wrap .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navigation-wrap .item .icon {
+    color: var(--blue);
+    font-size: 12px;
 }
 
 @media screen and (max-width: 768px) {

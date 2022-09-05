@@ -19,7 +19,7 @@ class PasswordController extends Controller
     public function index(): Response
     {
         return Inertia::render('Profile/ChangePassword', [
-            'initial_password' => Auth::user()->initial_password
+            'initial_password' => !!Auth::user()->initial_password
         ]);
     }
 

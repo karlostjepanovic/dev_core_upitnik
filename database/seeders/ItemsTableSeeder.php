@@ -65,7 +65,7 @@ class ItemsTableSeeder extends Seeder
         ]);
         Item::create([
             'question' => 'Padalo mi je napamet da se ozlijedim',
-            'dimension' => 'P',
+            'dimension' => 'R',
             'ascending_order' => true,
             'questionnaire_id' => 1,
         ]);
@@ -269,7 +269,7 @@ class ItemsTableSeeder extends Seeder
         ]);
         Item::create([
             'question' => 'Padalo mi je napamet da se ozlijedim',
-            'dimension' => 'P',
+            'dimension' => 'R',
             'ascending_order' => true,
             'questionnaire_id' => 2,
         ]);

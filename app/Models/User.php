@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -24,4 +25,18 @@ class User extends Authenticatable
         'email',
         'is_admin'
     ];
+
+    public function mySchools() {
+        return $this->hasMany(School::class, 'supervisor_id');
+    }
+
+    public function myQuestionnaires()
+    {
+        return $this->hasMany(StudentQuestionnaire::class)->orderBy('id', 'desc');
+    }
+
+    public function myDoneQuestionnaires()
+    {
+        return $this->belongsToMany(Questionnaire::class, 'student_questionnaires')->where('is_done', true)->withPivot(Schema::getColumnListing('student_questionnaires'));
+    }
 }

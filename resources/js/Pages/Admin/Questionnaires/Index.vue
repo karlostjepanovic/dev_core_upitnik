@@ -27,7 +27,7 @@
                     <td>{{ questionnaire.type }}</td>
                     <td>{{ questionnaire.target_group_value }}</td>
                     <td>
-                        <svg style="width:16px;height:16px" viewBox="0 0 24 24" class="txt-green" v-if="questionnaire.locked">
+                        <svg style="width:16px;height:16px" viewBox="0 0 24 24" class="txt-green" v-if="questionnaire.is_locked">
                             <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
                         </svg>
                         <svg style="width:16px;height:16px" viewBox="0 0 24 24" class="txt-red" v-else>
@@ -39,7 +39,7 @@
                         <Link :href="`/admin/questionnaires/${questionnaire.id}/items`" class="link">Pregledaj čestice</Link>
                     </td>
                     <td>
-                        <EditObject :id="questionnaire.id" path="show"/>
+                        <EditObject :id="questionnaire.id" path="show" v-if="!questionnaire.is_locked"/>
                     </td>
                 </tr>
                 </tbody>

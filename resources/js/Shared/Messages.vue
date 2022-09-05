@@ -30,17 +30,17 @@ export default {
     name: "Messages",
     data() {
         return {
-            show: false,
+            show: true,
         }
     },
-    watch: {
+    /*watch: {
         '$page.props.flash': {
             handler() {
                 this.show = true
             },
             deep: true,
         },
-    },
+    },*/
 }
 </script>
 

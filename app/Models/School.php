@@ -20,4 +20,9 @@ class School extends Model
     {
         return $this->hasOne(User::class, 'id', 'supervisor_id');
     }
+
+    public function getClasses()
+    {
+        return $this->hasMany(SchoolClass::class)->orderBy('name');
+    }
 }

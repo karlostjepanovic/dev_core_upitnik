@@ -105,7 +105,7 @@
                 <div class="subtitle">Brisanje škole</div>
             </div>
             <div class="section">
-                <p>Želite li obrisati korisnika? Brisanje je moguće jedino ako za tu školu ne postoje vezani podatci.</p>
+                <p>Želite li obrisati školu? Brisanje je moguće jedino ako za tu školu ne postoje vezani podatci.</p>
             </div>
             <button type="button" class="button red ghost" @click="deleteSchool">
                 <svg style="width:20px;height:20px" viewBox="0 0 24 24">

@@ -156,6 +156,7 @@ return [
     */
 
     'attributes' => [
+        'answers.*.value'       => 'odgovor',
         'ascending_order'       => 'redoslijed',
         'current_password'      => 'trenutna lozinka',
         'dimension'             => 'dimenzija',
@@ -169,6 +170,7 @@ return [
         'place'                 => 'mjesto',
         'supervisor'            => 'odgovorna osoba',
         'question'              => 'pitanje',
+        'questionnaire'         => 'upitnik',
         'repeat_password'       => 'ponovljena lozinka',
         'target_group'          => 'ciljana skupina',
         'type'                  => 'vrsta',

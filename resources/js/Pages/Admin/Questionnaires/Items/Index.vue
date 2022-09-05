@@ -109,9 +109,8 @@ export default {
 
 .label div {
     width: 80px;
-    line-height: 40px;
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     right: -35px;
     transform: rotate(-50deg);
     font-size: 90%;

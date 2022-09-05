@@ -74,6 +74,7 @@ pre {
 .link {
     color: var(--dark-blue);
     text-decoration-line: underline;
+    cursor: pointer;
 }
 
 .link:hover {

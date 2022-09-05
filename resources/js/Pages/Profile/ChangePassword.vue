@@ -68,7 +68,7 @@ export default {
     name: "ChangePassword",
     layout: MainTemplate,
     props: {
-        initial_password: String
+        initial_password: Boolean
     },
     data() {
         return {

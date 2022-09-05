@@ -110,7 +110,7 @@ class QuestionnaireController extends Controller
             } catch (QueryException $e) {
                 return redirect()->back()->with('error', 'Dogodila se greška.');
             }
-            return redirect()->back()->with('success', 'Upitnik je uspješno zaključan.');
+            return redirect()->route('admin.questionnaires')->with('success', 'Upitnik je uspješno zaključan.');
         }
         return redirect()->back()->with('error', 'Dogodila se greška.');
     }

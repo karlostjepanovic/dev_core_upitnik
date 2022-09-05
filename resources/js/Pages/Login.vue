@@ -103,7 +103,7 @@ export default {
     background: rgba(255, 255, 255, 0.7);
     padding: 2em 2.5em;
     border-radius: .5em;
-    min-width: 360px;
+    width: 360px;
     margin: 10px;
 }
 
